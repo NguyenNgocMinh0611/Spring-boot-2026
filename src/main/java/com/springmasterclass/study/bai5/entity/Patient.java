@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,5 +38,8 @@ public class Patient { // Đầu 1
         // Hibernate sẽ tự động sinh lệnh DELETE lượt khám đó dưới Database. Nó sẽ ngăn chặn việc tồn tại những dữ liệu
         // "mồ côi" (orphan) không thuộc về ai.
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    // này cũng là 1 cách giải quyết N+1 query nhưng cách này ko giải quyết triệt để
+    // này tạo qua số này mới tạo +1 query
+    @BatchSize(size = 20)
     private List<Checkup> checkups;
 }

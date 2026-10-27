@@ -20,6 +20,9 @@ public class Product {
     private Long id;
     private String name;
     private BigDecimal price;
-    private String category;
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

@@ -35,6 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
 //        return products.map(product -> productMapper.toResponse(product));
         // cách viết của java 8 NHỚ HỌC KĨ
-        return products.map(productMapper::toResponse);
+//        return products.map(productMapper::toResponse);
+        return null;
     }
 }

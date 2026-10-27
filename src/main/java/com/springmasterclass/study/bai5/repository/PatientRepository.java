@@ -22,6 +22,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Query("SELECT p FROM Patient p")
     List<Patient> findAllWithCheckUpOptimized();
 
+    // đây cũng là một cách giải quyết vấn đề N+1 query
     @EntityGraph(attributePaths = {"checkups", "doctors"})
     Page<Patient> findAll(Pageable pageable);
 
